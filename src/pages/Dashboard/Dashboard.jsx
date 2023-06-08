@@ -35,9 +35,7 @@ function Dashboard() {
       dispatch(listUsers(user.token))
     }
 
-    dispatch(reset())
-
-  }, [user, navigate, dispatch])
+  }, [])
 
 
   if (isLoading) {

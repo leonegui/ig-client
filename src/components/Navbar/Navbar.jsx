@@ -158,10 +158,11 @@ function Navbar() {
                     sx={{ width: 36, height: 36 }} />
                     
                 </Link>
-                <Button sx={
+                <Button variant="outlined" color="error" sx={
                   {
                     color: 'inherit',
                     textDecoration: 'none',
+                    margin: '0px 10px',
                   }
                 } onClick={onLogout}>Sair</Button>
 

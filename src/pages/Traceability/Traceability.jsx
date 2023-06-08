@@ -71,6 +71,7 @@ function Traceability() {
               flexDirection: 'column',
               gap: '10px',
               alignItems: 'center',
+              textAlign: 'center',
             }
           }>
 

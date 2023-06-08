@@ -4,7 +4,7 @@ import { loginUser, reset } from '../../features/auth/authSlice'
 import { getResume } from '../../features/resume/resumeSlice'
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-import { Button, Typography, Box, Container, CssBaseline, TextField, CircularProgress } from '@mui/material';
+import { Button, Typography, Box, Container, CssBaseline, TextField, CircularProgress, Stack, Alert } from '@mui/material';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -20,6 +20,7 @@ function Login() {
   const navigate = useNavigate()
 
   useEffect(() => {
+
     if (isError) {
       toast.error(message)
     }
@@ -29,8 +30,6 @@ function Login() {
     }
 
     if (isSuccess) {
-      toast.success('Entrou com sucesso!')
-
       dispatch(getResume(user.token))
     }
 
@@ -56,6 +55,7 @@ function Login() {
 
     dispatch(loginUser(userData))
   }
+
 
   if (isLoading) {
     return <Box sx={
@@ -85,7 +85,7 @@ function Login() {
             flexDirection: 'column',
             alignItems: 'center',
             height: '100vh',
-            marginTop:'-100px'
+            marginTop: '-100px'
           }
         }
       >
@@ -116,6 +116,17 @@ function Login() {
           } variant="contained" type="submit">Entrar</Button>
 
         </form>
+
+        {isError && <Typography variant="h6" component="h1" gutterBottom sx={
+          {
+            color: 'red',
+            border: '1px solid red',
+            width: '100%',
+            textAlign: 'center',
+            padding: '10px',
+          }
+        }>{message}</Typography>}
+
       </Box>
 
     </Container>

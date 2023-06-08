@@ -36,9 +36,7 @@ function Register() {
 
     if (isSuccess) {
 
-      toast.success('Entrou com sucesso!')
-
-      dispatch(resetResume())
+        dispatch(resetResume())
 
       if (!resume) {
         dispatch(getResume(user.token))
@@ -162,6 +160,17 @@ function Register() {
           } variant="contained" type="submit">Cadastrar</Button>
 
         </form>
+
+        {isError && <Typography variant="h6" component="h1" gutterBottom sx={
+          {
+            color:'red',
+            border: '1px solid red',
+            width: '100%',
+            textAlign: 'center',
+            padding: '10px',
+          }
+        }>{message}</Typography>}
+
       </Box>
     </Container>
 
