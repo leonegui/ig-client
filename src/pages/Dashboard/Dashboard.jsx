@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { listUsers, reset } from "../../features/auth/authSlice"
+import {  reset } from "../../features/auth/authSlice"
+import { listUsers } from "../../features/admin/adminSlice"
 import { Typography, Box, Container, CssBaseline, Link, Button, TextField, CircularProgress } from '@mui/material';
 import RegisterProduct from "../Products/RegisterProduct";
 import { trackProduct, clear } from "../../features/products/productsSlice";
 
 function Dashboard() {
 
-  const { user, users, pending} = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
-  const { isError, productData, message, isSuccess } = useSelector((state) => state.products)
-
-  const { isLoading } = useSelector((state) => state.admin)
+  const { isLoading, users } = useSelector((state) => state.admin)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -76,7 +75,7 @@ function Dashboard() {
         }>
 
           <Typography variant="h4" component="h1" gutterBottom>Rastreie produtos oficiais!</Typography>
-          <TextField type="text" placeholder="Digite o selo do produto" value={selo} onChange={(e) => setSelo(e.target.value)} />
+          <TextField type="number" placeholder="Digite o selo do produto" value={selo} onChange={(e) => setSelo(e.target.value)} />
           <Button onClick={onTrack} variant="contained" color="success">Rastrear</Button>
           
         </Box>

@@ -155,9 +155,8 @@ function Navbar() {
                 } href="/meu-perfil">
 
                   <Avatar src={user.pathFoto ? process.env.REACT_APP_API_URI + user.pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
-                    sx={{ width: 36, height: 36 }}
-                  
-                  />
+                    sx={{ width: 36, height: 36 }} />
+                    
                 </Link>
                 <Button sx={
                   {

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import adminService from "./adminService";
 
 const initialState = {
+    users:[],
     userData: {},
     resumeData: null,
     documentsData: null,
@@ -65,6 +66,18 @@ export const alterAccess = createAsyncThunk('admin/role', async (user, thunkAPI)
     try {
         const response = await adminService.alterAccess(user)
         return response 
+    } catch (error) {
+        // caso ocorra algum erro
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
+// listar usuários
+export const listUsers = createAsyncThunk('admin/list', async (user, thunkAPI) => {
+    try {
+        const response = await adminService.listUsers(user)
+        return response
     } catch (error) {
         // caso ocorra algum erro
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
@@ -140,7 +153,8 @@ export const adminSlice = createSlice({
                 state.isSuccess = true
                 state.isLoading = false
                 state.isError = false
-                state.message = action.payload
+                state.users.splice(state.users.indexOf(action.payload), 1)
+                state.users = state.users.filter(user => user._id !== action.payload.id);
             }
             )
             .addCase(deleteUser.rejected, (state, action) => {
@@ -163,6 +177,26 @@ export const adminSlice = createSlice({
             }
             )
             .addCase(alterAccess.rejected, (state, action) => {
+                state.isError = true
+                state.isLoading = false
+                state.message = action.payload
+            }
+            ) 
+            // listar usuários
+            .addCase(listUsers.pending, state => {
+                state.isLoading = true
+                state.isSuccess = false
+                state.isError = false
+            }
+            )
+            .addCase(listUsers.fulfilled, (state, action) => {
+                state.isSuccess = true
+                state.isLoading = false
+                state.isError = false
+                state.users = action.payload
+            }
+            )
+            .addCase(listUsers.rejected, (state, action) => {
                 state.isError = true
                 state.isLoading = false
                 state.message = action.payload

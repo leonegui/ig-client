@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createResume, reset, updateResume } from '../../features/resume/resumeSlice'
 import { toast } from 'react-toastify'
-import { Button, Typography, TextareaAutosize , Box } from '@mui/material';
+import { Button, Typography, TextareaAutosize, Box } from '@mui/material';
 
 function Resume() {
 
   const { resume, isError, isLoading, isSuccess, message } = useSelector((state) => state.resume)
+  
   const { user } = useSelector((state) => state.auth)
 
   const [inputData, setInputData] = useState({
@@ -35,6 +36,17 @@ function Resume() {
 
   }, [resume, isError, isLoading, isSuccess, message, dispatch])
 
+
+  useEffect(() => {
+    if (resume) {
+      setInputData(prevInputData => ({
+        ...prevInputData,
+        id: resume._id,
+        body: resume.body,
+      }));
+    }
+  }, [resume]);
+
   // envia o resumo para o backend
   const submitResume = (e) => {
     e.preventDefault()
@@ -57,7 +69,9 @@ function Resume() {
 
   // atualiza o resumo no backend
   const handleUpdate = (e) => {
+
     e.preventDefault()
+
     dispatch(updateResume(inputData))
 
   }
@@ -67,6 +81,7 @@ function Resume() {
       {
         display: 'flex',
         flexDirection: 'column',
+        gap: '20px',
       }
     }>
 
@@ -74,11 +89,11 @@ function Resume() {
         {
           marginBottom: '20px',
 
-      }} variant='h5' >Resumo</Typography>
+        }} variant='h5' >Resumo</Typography>
 
       <TextareaAutosize minRows={4} onChange={onChange} name="body" id="body" defaultValue={body} />
 
-      {resume ? <Button variant="contained"  onClick={handleUpdate}>Atualizar</Button> : <Button variant="contained" onClick={submitResume} >Criar</Button> }
+      {resume ? <Button variant="contained" onClick={handleUpdate}>Atualizar</Button> : <Button variant="contained" onClick={submitResume} >Criar</Button>}
 
     </Box>
   )

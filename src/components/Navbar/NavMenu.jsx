@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, AppBar as MuiAppBar, Toolbar, IconButton, Typography, CssBaseline, Drawer, Divider, Link, List, ListItem, ListItemIcon, ListItemText, Button } from '@mui/material';
-import { TbMenu2, TbArrowNarrowLeft, TbArrowNarrowRight, TbCoffee,
-    TbSearch,TbHome2, TbUsers,TbNews } from "react-icons/tb";
+import {
+    Box, AppBar as MuiAppBar, Toolbar, IconButton, Typography,
+    CssBaseline, Drawer, Divider, Link, List, ListItem, ListItemIcon, ListItemText, Button, Avatar
+} from '@mui/material';
+import {
+    TbMenu2, TbArrowNarrowLeft, TbArrowNarrowRight, TbCoffee,
+    TbSearch, TbHome2, TbUsers, TbNews
+} from "react-icons/tb";
 
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,24 +16,6 @@ import { logout } from '../../features/auth/authSlice';
 
 const drawerWidth = 240;
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
-    ({ theme, open }) => ({
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginRight: -drawerWidth,
-        ...(open && {
-            transition: theme.transitions.create('margin', {
-                easing: theme.transitions.easing.easeOut,
-                duration: theme.transitions.duration.enteringScreen,
-            }),
-            marginRight: 0,
-        }),
-    }),
-);
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -58,7 +45,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 function NavMenu() {
-    
+
     const { user } = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -76,12 +63,12 @@ function NavMenu() {
 
 
     return (
-        <Box sx={{ display: 'flex', marginBottom:'100px' }}>
+        <Box sx={{ display: 'flex', marginBottom: '100px' }}>
             <CssBaseline />
             <AppBar sx={
                 {
                     backgroundColor: '#000000',
-                   
+
                 }
             } position="fixed" open={open}>
                 <Toolbar>
@@ -207,15 +194,30 @@ function NavMenu() {
                             marginBlock: '10px',
                         }
                     }>
-                        {!user ?(
+                        {!user ? (
                             <>
                                 <Button variant="contained" color="success" href="/entrar">Entrar</Button>
                                 <Button variant="contained" color="primary" href="/registrar">Registrar</Button>
                             </>
-                        ):(
-                            <Button variant="contained" color="error" onClick={() => dispatch(logout())}>Sair</Button>
+                        ) : (
+                            <>
+                                <Link sx={
+                                    {
+                                        color: 'inherit',
+                                        textDecoration: 'none',
+                                    }
+                                } href="/meu-perfil">
+
+                                    <Avatar src={user.pathFoto ? process.env.REACT_APP_API_URI + user.pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
+                                        sx={{ width: 36, height: 36 }} />
+
+                                </Link>
+
+                                <Button variant="contained" color="error" onClick={() => dispatch(logout(),navigate('/') )}>Sair</Button>
+                            </>
+
                         )}
-                        
+
                     </Box>
 
                 </List>

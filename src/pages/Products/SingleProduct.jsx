@@ -1,4 +1,4 @@
-import { Container, Box, Typography, CircularProgress, TextField, Button } from '@mui/material'
+import { Container, Box, Typography, CircularProgress, TextField, Button, useMediaQuery } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +11,7 @@ function SingleProduct() {
     const { id } = useParams()
 
     const dispatch = useDispatch()
+    const matches = useMediaQuery('(max-width:800px)')
 
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -98,7 +99,7 @@ function SingleProduct() {
                     <Box sx={
                         {
                             display: 'flex',
-                            flexDirection: 'row',
+                            flexDirection: matches ? 'column' : 'row',
                             gap: '10px',
 
                         }
@@ -108,10 +109,11 @@ function SingleProduct() {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 gap: '10px',
-                                width: '50%',
+                                width: matches ? '100%' : '50%',
+                                alignItems: 'center',
                             }
                         }>
-                            <img width={300} src={productData.path ? process.env.REACT_APP_API_URI + productData.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
+                            <img width='auto' src={productData.path ? process.env.REACT_APP_API_URI + productData.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
 
                             {productData.path ? 
                             <>

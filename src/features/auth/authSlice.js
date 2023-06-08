@@ -5,7 +5,6 @@ const user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
     user: user ? user : null,
-    users: [],
     isError: false,
     pending: false,
     isSuccess: false,
@@ -77,25 +76,6 @@ export const addProfilePhoto = createAsyncThunk('auth/addPhoto', async (user, th
         const token = thunkAPI.getState().auth.user.token
 
         return await authService.addProfilePhoto(user, token)
-
-    } catch (error) {
-        // caso ocorra algum erro
-
-        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-        return thunkAPI.rejectWithValue(message);
-    }
-})
-
-// ROTAS PARA ADMINISTRADOR
-
-// listar todos os usuários
-
-export const listUsers = createAsyncThunk('auth/listUsers', async (_, thunkAPI) => {
-    try {
-        // pegar o token do usuário
-        const token = thunkAPI.getState().auth.user.token
-
-        return await authService.listUsers(token)
 
     } catch (error) {
         // caso ocorra algum erro
@@ -181,23 +161,6 @@ export const authSlice = createSlice({
                 state.user = null
             }
             )
-            // listar usuários
-            .addCase(listUsers.pending, (state) => {
-                state.pending = true;
-            }
-            )
-            .addCase(listUsers.fulfilled, (state, action) => {
-                state.pending = false;
-                state.users = action.payload;
-            }
-            )
-            .addCase(listUsers.rejected, (state, action) => {
-                state.pending = false;
-                state.isError = true;
-                state.message = action.payload;
-            }
-            )
-
     }
 
 

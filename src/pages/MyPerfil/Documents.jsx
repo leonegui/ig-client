@@ -4,7 +4,7 @@ import { addDocument, deleteDocument, downloadDocument } from "../../features/do
 import { useEffect } from "react"
 import { toast } from "react-toastify"
 import { resetDocuments } from "../../features/documents/documentsSlice"
-import { Button, Typography,Box } from '@mui/material';
+import { Button, Typography,Box, Stack, CircularProgress } from '@mui/material';
 import { FaDownload, FaTrash } from 'react-icons/fa'
 
 function Documents() {
@@ -54,7 +54,21 @@ function Documents() {
   }, [isError, isSuccess, message, documents, dispatch])
 
 
-  if (isLoading) return (<h1>Carregando...</h1>)
+  if (isLoading) {
+    return <Box sx={
+      {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
+    }>
+      <CircularProgress sx={
+        {
+          margin: '100px',
+        }
+      } size={100} />
+    </Box>
+  }
 
   return (
     <Box sx={
@@ -71,21 +85,31 @@ function Documents() {
 
       <form onSubmit={handleSubmit}>
         <input onChange={onChange} type="file" ref={fileInputRef} />
-        <Button type="submit" variant="contained" color="primary">Adicionar</Button>
+        <Button sx={{margin:'10px 0'}} type="submit" variant="contained" color="primary">Adicionar</Button>
       </form>
 
-        {documents && documents.length > 0 ? (<>
+        {documents && documents.length > 0 ? (<Box sx={
+          {
+            marginBottom: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px'
+          }
+        }>
+
           {documents.map((document) => (
-            <Box>
+            
             <div key={document._id}>
+              <Stack spacing={1} direction="row" alignItems="center">
               <p>{document.name}</p>
-              <button onClick={() => dispatch(downloadDocument(document))}><FaDownload /> </button>
-              <button onClick={() => dispatch(deleteDocument({ document: document._id }))}><FaTrash /> </button>
+              <Button variant="contained" color="success" onClick={() => dispatch(downloadDocument(document))}><FaDownload /> </Button>
+              <Button variant="contained" color="error" onClick={() => dispatch(deleteDocument({ document: document._id }))}><FaTrash /> </Button>
+              </Stack>
             </div>
-            </Box>
+            
           ))
           }
-        </>) : (
+        </Box>) : (
             <Typography sx={
               {
                 marginBottom: '20px',

@@ -63,7 +63,6 @@ const deleteUser = async ({ id, token }) => {
 }
 
 // alterar nível de acesso do usuário
-
 const alterAccess = async (accessData) => {
 
     const config = {
@@ -78,12 +77,29 @@ const alterAccess = async (accessData) => {
     return response.data
 }
 
+// listar todos os usuários
+const listUsers = async (token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+
+    }
+
+    const response = await axios.get(API_URI, config)
+
+    return response.data
+}
+
+
+
 const adminService = {
     getUserData,
     getResumeData,
     getDocumentsData,
     deleteUser,
-    alterAccess
+    alterAccess,
+    listUsers
 }
 
 export default adminService

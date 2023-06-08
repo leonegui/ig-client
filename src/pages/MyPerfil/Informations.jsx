@@ -8,9 +8,12 @@ import Resume from "./Resume"
 import Documents from "./Documents"
 import { getResume } from "../../features/resume/resumeSlice"
 import { getDocuments } from "../../features/documents/documentsSlice"
-import { Button, Stack, Avatar, Typography, Divider, Box, Container, CssBaseline, TextField } from '@mui/material';
+import { Button, Stack, Avatar, Typography, Divider, Box, Container, CssBaseline, TextField } from '@mui/material'
+import { useMediaQuery } from "@mui/material"
 
 function Informations() {
+
+    const matches = useMediaQuery('(max-width:800px)')
 
     const { user, isError, isLoading, isSuccess, message } = useSelector((state) => state.auth)
     const fileInputRef = useRef(null);
@@ -82,16 +85,16 @@ function Informations() {
     }
 
     return (
-        <Container sx={
-            { marginTop: '20px' }
-        }>         
-           <CssBaseline />
-           <Box>
-                <Typography variant="h5" color="text.primary">Dados Pessoais</Typography>
+        <Container>
+            <CssBaseline />
+            <Box>
+                <Typography sx={
+                    { marginBottom: '20px' }
+                } variant="h5" color="text.primary">Dados Pessoais</Typography>
 
                 <form onSubmit={handleChange}>
 
-                    <Stack spacing={2} direction="row" alignItems="center">
+                    <Stack spacing={2} direction={matches ? "column" : 'row'} alignItems="center">
 
                         <TextField sx={
                             { width: '100%' }
@@ -109,23 +112,23 @@ function Informations() {
 
                     <Button sx={
                         { margin: '20px 0' }
-                    } type="submit" variant="contained" color="primary">Atualizar</Button>
+                    } type="submit" fullWidth variant="contained" color="primary">Atualizar</Button>
 
                 </form>
-      
 
-            <Divider sx={{ margin: '20px 0' }} />
-            
+
+                <Divider sx={{ margin: '20px 0' }} />
+
                 <Typography sx={
                     { margin: '20px 0' }
                 } variant="h5" color="text.primary">Foto de Perfil</Typography>
 
                 {user.pathFoto ?
                     (<Box sx={
-                        { display: 'flex', alignItems: 'center', }
+                        { display: 'flex', gap:'10px', flexDirection: 'column', justifyContent: 'center' }
                     }>
                         <Avatar src={user.pathFoto ? `http://localhost:3001/${user.pathFoto}` : 'https://placehold.co/600x400'} alt="Foto de Perfil"
-                            sx={{ width: 56, height: 56 }}
+                            sx={{ width: 150, height: 150 }}
                             variant="rounded"
                         />
 
@@ -140,11 +143,11 @@ function Informations() {
                         <Button onClick={handleFile} variant="contained" color="primary">Atualizar</Button>
                     </>)
                 }
-          
 
-            <Divider sx={{ margin: '20px 0' }} />
 
-          
+                <Divider sx={{ margin: '20px 0' }} />
+
+
                 <Typography sx={
                     { margin: '20px 0' }
                 } variant="h5" color="text.primary">Endereço </Typography>
@@ -152,7 +155,7 @@ function Informations() {
 
                 <form onSubmit={handleAddress} >
 
-                    <Stack spacing={2} direction="row" alignItems="center">
+                    <Stack spacing={2} direction={matches ? "column" : 'row'} alignItems="center">
                         <TextField label='CEP' size="small" variant='filled' fullWidth value={address ? address.cep : ''} type="number" name="cep" id="cep" placeholder="CEP" onChange={onChangeAddress} />
 
                         <TextField label='Logradouro' size="small" variant='filled' fullWidth value={address ? address.logradouro : ''} type="text" name="logradouro" id="logradouro" placeholder="Logradouro" onChange={onChangeAddress} />
@@ -162,7 +165,7 @@ function Informations() {
                         <TextField label='Complemento' size="small" variant='filled' fullWidth value={address ? address.complemento : ''} type="text" name="complemento" id="complemento" placeholder="Complemento" onChange={onChangeAddress} />
                     </Stack>
 
-                    <Stack spacing={2} direction="row" alignItems="center">
+                    <Stack spacing={2} direction={matches ? "column" : 'row'} alignItems="center">
                         <TextField sx={
                             { margin: '10px 0' }
                         } label='Bairro' size="small" variant='filled' fullWidth value={address ? address.bairro : ''} type="text" name="bairro" id="bairro" placeholder="Bairro" onChange={onChangeAddress} />
@@ -175,22 +178,24 @@ function Informations() {
                             { margin: '10px 0' }
                         } fullWidth label='Estado' size="small" variant='filled' value={address ? address.estado : ''} type="text" name="estado" id="estado" placeholder="Estado" onChange={onChangeAddress} />
 
-                        <Button fullWidth type="submit" variant="contained" color="primary">Atualizar</Button>
+                        <Button sx={
+                            { margin: '10px 0' }
+                        } fullWidth type="submit" variant="contained" color="primary">Atualizar</Button>
                     </Stack>
 
                 </form>
 
-            
 
-            <Divider sx={{ margin: '20px 0' }} />
-            
-            <Resume />
 
-            <Divider sx={{ margin: '20px 0' }} />
+                <Divider sx={{ margin: '20px 0' }} />
 
-            <Documents />
-  
-            </Box>   
+                <Resume />
+
+                <Divider sx={{ margin: '20px 0' }} />
+
+                <Documents />
+
+            </Box>
         </Container>
 
     )

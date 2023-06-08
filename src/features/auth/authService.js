@@ -77,23 +77,6 @@ const addProfilePhoto = async (userData) => {
 }
 
 
-// ROTAS PARA O ADMINISTRADOR
-
-// listar todos os usuários
-const listUsers = async (token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-
-    }
-
-    const response = await axios.get(API_URL, config)
-
-    return response.data
-}
-
-
 // logout de usuário
 const logout = async () => {
     localStorage.removeItem('user')
@@ -108,7 +91,6 @@ const authService = {
     logout,
     updateUser,
     addProfilePhoto,
-    listUsers
 }
 
 export default authService;

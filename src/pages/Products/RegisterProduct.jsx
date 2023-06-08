@@ -75,16 +75,18 @@ function RegisterProduct() {
           (<Typography variant="h4" component="h1" gutterBottom>Nenhum produto cadastrado</Typography>)
 
           : (
-            <>
+            <Box sx={
+              {
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px'
+              }
+            }>
               <Typography variant="h4" >Seus Produtos</Typography>
 
               {productsData.map((product) => (
                 <div key={product._id}>
-                  <Typography sx={
-                    {
-                      margin: '10px 0'
-                    }
-                  } variant="h5" component="h1">
+                  <Typography variant="h5" component="h1">
                     {product.name}
                     <Button sx={
                       {
@@ -95,7 +97,8 @@ function RegisterProduct() {
                   </Typography>
                 </div>
               ))}
-            </>
+
+            </Box>
           )}
 
         <Typography variant="h4" component="h1" gutterBottom>Cadastrar Produto</Typography>

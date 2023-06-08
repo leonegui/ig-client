@@ -8,6 +8,7 @@ import { Button, Typography, Box, Container, CssBaseline, TextField, CircularPro
 
 
 function Register() {
+  
   const [formData, setFormData] = useState({
     name: '',
     cpf: '',

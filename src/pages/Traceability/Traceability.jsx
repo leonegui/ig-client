@@ -11,7 +11,6 @@ function Traceability() {
 
   const navigate = useNavigate()
 
-
   if (isLoading) {
     return <Box sx={
       {
