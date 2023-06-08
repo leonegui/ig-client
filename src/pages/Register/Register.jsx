@@ -91,7 +91,6 @@ function Register() {
           flexDirection: 'column',
           alignItems: 'center',
           height: '100vh',
-          marginTop: '-18vh',
         }
       } >
 

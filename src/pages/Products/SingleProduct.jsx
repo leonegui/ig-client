@@ -82,7 +82,7 @@ function SingleProduct() {
     return (
 
         <Container sx={{
-            height: '100vh'
+            height: '100vh',
         }}>
 
             {productData ? <Box sx={

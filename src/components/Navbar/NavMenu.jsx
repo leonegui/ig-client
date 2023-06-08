@@ -105,15 +105,7 @@ function NavMenu() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <Main open={open}>
-                <DrawerHeader />
-                <Typography paragraph>
 
-                </Typography>
-                <Typography paragraph>
-
-                </Typography>
-            </Main>
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -217,7 +209,7 @@ function NavMenu() {
                         {!user ?(
                             <>
                                 <Button variant="contained" color="success" href="/entrar">Entrar</Button>
-                                <Button variant="contained" color="primary" href="/entrar">Registrar</Button>
+                                <Button variant="contained" color="primary" href="/registrar">Registrar</Button>
                             </>
                         ):(
                             <Button variant="contained" color="error" onClick={() => dispatch(logout())}>Sair</Button>
