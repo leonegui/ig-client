@@ -6,6 +6,8 @@ import { resetResume } from "../../features/resume/resumeSlice"
 import { resetDocuments } from "../../features/documents/documentsSlice"
 import { Button, Link, Container, Box, Typography, CssBaseline, Avatar } from '@mui/material'
 import { useMediaQuery } from "@mui/material"
+import NavMenu from "./NavMenu"
+
 
 function Navbar() {
 
@@ -33,15 +35,13 @@ function Navbar() {
         <Box sx={
           {
             display: 'flex',
-            alignItems: 'center',
-            textAlign: 'center',
             justifyContent: 'space-around',
             padding: '10px',
           }
 
         }>
 
-          <h1>teste</h1>
+          <NavMenu />
 
         </Box>
 
@@ -86,6 +86,7 @@ function Navbar() {
               textDecoration: 'none',
             }
           } href="/rastreabilidade">Rastreabilidade</Link>
+
           <Link sx={
             {
               color: 'inherit',
@@ -93,6 +94,7 @@ function Navbar() {
 
             }
           } href="/">Festival do Café</Link>
+          
           <Link sx={
             {
               color: 'inherit',

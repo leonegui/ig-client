@@ -48,7 +48,7 @@ function UserSingle() {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-        
+
     }
 
     const [open, setOpen] = useState(false);
@@ -84,33 +84,7 @@ function UserSingle() {
                     variant="rounded"
                 />
                 <Typography variant="h5" component="div">{name}</Typography>
-                <div>
-                    <Button color="error" variant="contained" onClick={handleOpen} disabled={user._id === id}>Excluir</Button>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                                Tem certeza que deseja excluir?
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                Voce não poderá desfazer essa ação.
-                                <Button onClick={handleClose}>Cancelar</Button>
-                                <Button color="error" onClick={() => (
-                                    dispatch(deleteUser({ id, token: user.token }),
-                                        (!isLoading && navigate('/'))
-                                    ))}>Excluir</Button>
-                            </Typography>
-                        </Box>
-                    </Modal>   
-                </div>
 
-                <div>
-                     <Button color="success" variant="contained" disabled={user._id === id}>Aprovar</Button>
-                </div>
             </Stack>
 
             <Stack spacing={2} direction="row" >
@@ -144,23 +118,23 @@ function UserSingle() {
 
             <Typography variant="h5" component="div">Documentos</Typography>
 
-            
+
             {documents.length > 0 ? documents.map((document) => (
-                    <Box sx={
-                        {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            width: '50%',
-                            border: '1px solid black',
-                            borderRadius: '5px',
-                            padding: '10px',
-                            margin:'10px 0'
-                        }
-                    } key={document._id}>
-                        <p>{document.name}</p>
-                        <Button variant="contained" color="success" onClick={() => dispatch(downloadDocument(document))}>{<FaDownload />}</Button>
-                    </Box>
+                <Box sx={
+                    {
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        width: '50%',
+                        border: '1px solid black',
+                        borderRadius: '5px',
+                        padding: '10px',
+                        margin: '10px 0'
+                    }
+                } key={document._id}>
+                    <p>{document.name}</p>
+                    <Button variant="contained" color="success" onClick={() => dispatch(downloadDocument(document))}>{<FaDownload />}</Button>
+                </Box>
 
             )) : <p>Nenhum documento adicionado</p>
 
@@ -169,6 +143,44 @@ function UserSingle() {
             <Box>
                 <Typography variant="h5" component="div">Alterar Acesso</Typography>
                 <AccessLevel id={id} token={user.token} />
+
+            </Box>
+
+
+            <Box sx={
+                {
+                    display: 'flex',
+                    justifyContent: 'end',
+                    alignItems: 'center',
+                    gap: '10px',
+                }
+            }>
+                <Box>
+                    <Button color="error" variant="contained" onClick={handleOpen} disabled={user._id === id}>Excluir</Button>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Tem certeza que deseja excluir?
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                Voce não poderá desfazer essa ação.
+                                <Button onClick={handleClose}>Cancelar</Button>
+                                <Button color="error" onClick={() => (
+                                    dispatch(deleteUser({ id, token: user.token }),
+                                        (!isLoading && navigate('/'))
+                                    ))}>Excluir</Button>
+                            </Typography>
+                        </Box>
+                    </Modal>
+                </Box>
+                <div>
+                    <Button color="success" variant="contained" disabled={user._id === id}>Aprovar</Button>
+                </div>
 
             </Box>
 
