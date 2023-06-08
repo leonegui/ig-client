@@ -3,7 +3,7 @@ import productsService from './productsService'
 
 const product = JSON.parse(localStorage.getItem('product'))
 const error = JSON.parse(localStorage.getItem('error'))
-console.log(error)
+
 const initialState = {
     productsData: [],
     productData: product ? product : {},

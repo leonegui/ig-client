@@ -111,7 +111,7 @@ function SingleProduct() {
                                 width: '50%',
                             }
                         }>
-                            <img width={300} src={productData.path ? `http://localhost:3001/${productData.path}` : 'https://placehold.co/300x300'} alt="Foto do produto" />
+                            <img width={300} src={productData.path ? process.env.REACT_APP_API_URI + user.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
 
                             {productData.path ? 
                             <>
