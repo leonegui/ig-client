@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { getDocumentsData, getResumeData, getUserData, deleteUser, reset } from "../../features/admin/adminSlice"
 import { downloadDocument } from '../../features/documents/documentsSlice'
 import { FaDownload } from 'react-icons/fa'
-import { Button, Stack, Avatar, Typography, Modal, Box, Container, CssBaseline, Divider } from '@mui/material';
+import { Button, Stack, Avatar, Typography, Modal, Box, Container, CssBaseline, Divider, CircularProgress } from '@mui/material';
 import AccessLevel from "./AccessLevel"
 
 
@@ -67,7 +67,22 @@ function UserSingle() {
 
 
 
-    if (isLoading) return (<div>Carregando...</div>)
+    if (isLoading) {
+        return <Box sx={
+          {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100vh'
+          }
+        }>
+          <CircularProgress sx={
+            {
+              margin: '100px',
+            }
+          } size={100} />
+        </Box>
+      }
 
     return (
         <Container sx={

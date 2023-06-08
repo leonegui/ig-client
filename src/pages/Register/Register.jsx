@@ -4,7 +4,7 @@ import { reset, registerUser } from '../../features/auth/authSlice'
 import { getResume, resetResume } from '../../features/resume/resumeSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { Button, Typography, Box, Container, CssBaseline, TextField } from '@mui/material';
+import { Button, Typography, Box, Container, CssBaseline, TextField, CircularProgress } from '@mui/material';
 
 
 function Register() {
@@ -77,9 +77,21 @@ function Register() {
   }
 
   if (isLoading) {
-    return (<h1>Carregando...</h1>)
+    return <Box sx={
+      {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }
+    }>
+      <CircularProgress sx={
+        {
+          margin: '100px',
+        }
+      } size={100} />
+    </Box>
   }
-
   return (
     <Container>
       <CssBaseline />
@@ -91,6 +103,7 @@ function Register() {
           flexDirection: 'column',
           alignItems: 'center',
           height: '100vh',
+          marginTop:'-100px'
         }
       } >
 

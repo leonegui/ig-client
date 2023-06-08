@@ -4,7 +4,7 @@ import { loginUser, reset } from '../../features/auth/authSlice'
 import { getResume } from '../../features/resume/resumeSlice'
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
-import { Button, Typography, Box, Container, CssBaseline, TextField } from '@mui/material';
+import { Button, Typography, Box, Container, CssBaseline, TextField, CircularProgress } from '@mui/material';
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -58,7 +58,20 @@ function Login() {
   }
 
   if (isLoading) {
-    return (<h1>Carregando...</h1>)
+    return <Box sx={
+      {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
+      }
+    }>
+      <CircularProgress sx={
+        {
+          margin: '100px',
+        }
+      } size={100} />
+    </Box>
   }
 
   return (
@@ -72,6 +85,7 @@ function Login() {
             flexDirection: 'column',
             alignItems: 'center',
             height: '100vh',
+            marginTop:'-100px'
           }
         }
       >
