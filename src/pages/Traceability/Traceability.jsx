@@ -61,7 +61,7 @@ function Traceability() {
           }
         }>
           <Typography variant='h4'> {message} <FcHighPriority /> </Typography>
-          <Button variant='contained' color='error' onClick={() => navigate('/')}> Tentar novamente </Button>
+          <Button variant='contained' color='error' href='/'> Tentar novamente </Button>
         </Box>
       )
 
@@ -82,7 +82,7 @@ function Traceability() {
             <Typography variant='h5'> {productData.name} </Typography>
             <Typography variant='h5'> {productData.description} </Typography>
 
-            <Button variant='contained' color='success' onClick={() => navigate('/')}> Voltar </Button>
+            <Button variant='contained' color='success' href='/'> Voltar </Button>
 
           </Box>
 

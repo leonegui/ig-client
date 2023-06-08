@@ -72,7 +72,6 @@ function Dashboard() {
             display: 'flex',
             flexDirection: 'column',
             gap: '10px',
-            marginTop: '100px',
           }
         }>
 

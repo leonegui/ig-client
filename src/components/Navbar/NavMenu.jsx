@@ -76,11 +76,12 @@ function NavMenu() {
 
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', marginBottom:'100px' }}>
             <CssBaseline />
             <AppBar sx={
                 {
                     backgroundColor: '#000000',
+                   
                 }
             } position="fixed" open={open}>
                 <Toolbar>
