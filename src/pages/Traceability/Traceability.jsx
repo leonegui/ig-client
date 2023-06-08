@@ -1,6 +1,6 @@
 import { Box, Container, Typography, CircularProgress, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { FcOk, FcHighPriority } from "react-icons/fc";
 
 function Traceability() {
@@ -77,7 +77,7 @@ function Traceability() {
 
             <Typography variant='h4'> Produto Oficial <FcOk /></Typography>
 
-            <img width={300} src={productData.path ? `http://localhost:3001/${productData.path}` : 'https://placehold.co/300x300'} alt="Foto do produto" />
+            <img width={300} src={productData.path ? process.env.REACT_APP_API_URI + productData.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
 
             <Typography variant='h5'> {productData.name} </Typography>
             <Typography variant='h5'> {productData.description} </Typography>

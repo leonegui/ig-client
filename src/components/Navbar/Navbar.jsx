@@ -5,6 +5,7 @@ import './Styles.css'
 import { resetResume } from "../../features/resume/resumeSlice"
 import { resetDocuments } from "../../features/documents/documentsSlice"
 import { Button, Link, Container, Box, Typography, CssBaseline, Avatar } from '@mui/material'
+import { useMediaQuery } from "@mui/material"
 
 function Navbar() {
 
@@ -20,9 +21,42 @@ function Navbar() {
     dispatch(resetDocuments())
     navigate('/')
   }
+
+  const matches = useMediaQuery('(max-width:800px)')
+
+
+  if(matches) 
+  {
+
+    return(
+    
+        <Box sx={
+          {
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'center',
+            justifyContent: 'space-around',
+            padding: '10px',
+          }
+
+        }>
+
+          <h1>teste</h1>
+
+        </Box>
+
+
+    )
+
+  }
+
+
   return (
-    <Container fixed maxWidth='xl'>
+    
+    <Container>
+
       <CssBaseline />
+
       <Box sx={
         {
           display: 'flex',
@@ -118,7 +152,7 @@ function Navbar() {
                   }
                 } href="/meu-perfil">
 
-                  <Avatar src={user.pathFoto ? `http://localhost:3001/${user.pathFoto}` : 'https://placehold.co/600x400'} alt="Foto de Perfil"
+                  <Avatar src={user.pathFoto ? process.env.REACT_APP_API_URI + user.pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
                     sx={{ width: 36, height: 36 }}
                   
                   />

@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = process.env.REACT_APP_API_URI + 'documentos/'
+const API_URL = process.env.REACT_APP_API_URI + 'api/documentos/'
 
 // pegar documentos ADMIN
 const getDocumentsAdmin = async(token) => {
