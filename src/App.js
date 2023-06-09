@@ -14,6 +14,7 @@ import Blog from './pages/Blog/Blog';
 import RegisterProduct from './pages/Products/RegisterProduct';
 import SingleProduct from './pages/Products/SingleProduct';
 import Traceability from './pages/Traceability/Traceability';
+import Teste from './pages/TesteFirebase/Teste';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path={`/produtos`} element={<RegisterProduct />} />
           <Route path={`/produto/:id`} element={<SingleProduct />}/>
           <Route path={`/rastreabilidade`} element={<Traceability />}/>
+          <Route path={`/teste`} element={<Teste />}/>
         </Routes> 
         <Footer />
       </Router>
