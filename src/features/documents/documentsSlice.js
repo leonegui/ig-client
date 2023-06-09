@@ -157,8 +157,7 @@ export const documentsSlice = createSlice({
                 state.isSuccess = true;
                 state.isError = false;
                 state.message = ('Documento deletado com sucesso')
-                state.documents.splice(action.payload, 1)
-                state.documents = state.documents.filter(document => document.id !== action.payload.id)
+                state.documents = state.documents.filter(document => document._id !== action.payload.id)
                 
             }
             )

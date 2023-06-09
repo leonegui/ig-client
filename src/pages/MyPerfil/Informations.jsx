@@ -127,7 +127,7 @@ function Informations() {
                     (<Box sx={
                         { display: 'flex', gap:'10px', flexDirection: 'column', justifyContent: 'center' }
                     }>
-                        <Avatar src={user.pathFoto ? `http://localhost:3001/${user.pathFoto}` : 'https://placehold.co/600x400'} alt="Foto de Perfil"
+                        <Avatar src={user.pathFoto ? process.env.REACT_APP_API_URI + user.pathFoto: 'https://placehold.co/600x400'} alt="Foto de Perfil"
                             sx={{ width: 150, height: 150 }}
                             variant="rounded"
                         />
