@@ -72,6 +72,7 @@ function Traceability() {
               gap: '10px',
               alignItems: 'center',
               textAlign: 'center',
+              
             }
           }>
 
