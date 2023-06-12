@@ -77,7 +77,7 @@ function Traceability() {
 
             <Typography variant='h4'> Produto Oficial <FcOk /></Typography>
 
-            <img width={300} src={productData.path ? productData.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
+            <img width={300} src={productData.path ?process.env.REACT_APP_API_URI + productData.path : 'https://placehold.co/300x300'} alt="Foto do produto" />
 
             <Typography variant='h5'> {productData.name} </Typography>
             <Typography variant='h5'> {productData.description} </Typography>
