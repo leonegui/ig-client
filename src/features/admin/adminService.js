@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URI = process.env.REACT_APP_API_URI + 'api/admin/'
+const API_URI =  '/api/admin/'
 
 // pegar usuário
 const getUserData = async ({ id, token }) => {
