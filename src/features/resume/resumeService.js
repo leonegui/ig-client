@@ -2,6 +2,9 @@ import axios from "axios";
 
 const API_URL = 'http://localhost:3001/api/resume/'
 
+//const API_URL = '/api/resume/'
+
+
 // pegar currículo
 const getResume = async (resumaData) => {
     // pegar o token do usuário

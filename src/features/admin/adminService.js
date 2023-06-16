@@ -11,7 +11,7 @@ const getUserData = async ({ id, token }) => {
         },
 
     }
-    const response = await axios.get(API_URI + 'user/' + id, config)
+    const response = await axios.get(API_URI + '/user/' + id, config)
 
     return response.data
 
@@ -26,7 +26,7 @@ const getResumeData = async ({ id, token }) => {
 
     }
 
-    const response = await axios.get(API_URI + 'resume/' + id, config)
+    const response = await axios.get(API_URI + '/resume/' + id, config)
 
     return response.data
 }
@@ -41,7 +41,7 @@ const getDocumentsData = async ({ id, token }) => {
 
     }
 
-    const response = await axios.get(API_URI + 'documents/' + id, config)
+    const response = await axios.get(API_URI + '/documents/' + id, config)
 
     return response.data
 }
@@ -57,7 +57,7 @@ const deleteUser = async ({ id, token }) => {
         }
     }
 
-    const response = await axios.delete(API_URI + 'user/' + id, config)
+    const response = await axios.delete(API_URI + '/user/' + id, config)
 
     return response.data
 }
@@ -72,13 +72,14 @@ const alterAccess = async (accessData) => {
 
     }
 
-    const response = await axios.put(API_URI + 'user/' + accessData.id, accessData, config)
+    const response = await axios.put(API_URI + '/user/' + accessData.id, accessData, config)
 
     return response.data
 }
 
 // listar todos os usuários
 const listUsers = async (token) => {
+    
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,

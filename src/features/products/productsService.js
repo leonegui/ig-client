@@ -2,6 +2,9 @@ import axios from "axios";
 
 const API_URI = 'http://localhost:3001/api/products/';
 
+/*const API_URI = '/api/products/';*/
+
+
 // pegar produtos
 export const getProducts = async () => {
     const user = JSON.parse(localStorage.getItem('user'));
