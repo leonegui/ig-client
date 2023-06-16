@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = process.env.REACT_APP_API_URI + 'api/documentos/'
+const API_URL =  'http://localhost:3001/api/documentos/'
 
 // pegar documentos ADMIN
 const getDocumentsAdmin = async(token) => {
@@ -49,21 +49,15 @@ const downloadDocument = async(documentData,token) =>{
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
-        },
-        responseType: "blob"
+        }
     }
 
     const response = await axios.get(API_URL + 'baixar/' + documentData._id, config)
 
-    const blob = new Blob([response.data], { type: response.data.type });
-    const link = document.createElement("a");
-    link.href = window.URL.createObjectURL(blob);
+    if(response.data){
+       window.open(response.data.url)
+    }
 
-    link.setAttribute("download", documentData.name, blob);
-    document.body.appendChild(link);
-
-    link.click()
-    link.remove();
 
     // return response.data
 }

@@ -8,14 +8,14 @@ import Resume from "./Resume"
 import Documents from "./Documents"
 import { getResume } from "../../features/resume/resumeSlice"
 import { getDocuments } from "../../features/documents/documentsSlice"
-import { Button, Stack, Avatar, Typography, Divider, Box, Container, CssBaseline, TextField } from '@mui/material'
+import { Button, Stack, Avatar, Typography, Divider, Box, Container, CssBaseline, TextField, CircularProgress } from '@mui/material'
 import { useMediaQuery } from "@mui/material"
 
 function Informations() {
 
     const matches = useMediaQuery('(max-width:800px)')
 
-    const { user, isError, isLoading, isSuccess, message } = useSelector((state) => state.auth)
+    const { user, pending, isError, isLoading, isSuccess, message } = useSelector((state) => state.auth)
     const fileInputRef = useRef(null);
 
     const dispatch = useDispatch()
@@ -127,13 +127,13 @@ function Informations() {
                     (<Box sx={
                         { display: 'flex', gap:'10px', flexDirection: 'column', justifyContent: 'center' }
                     }>
-                        <Avatar src={user.pathFoto ? process.env.REACT_APP_API_URI + user.pathFoto: 'https://placehold.co/600x400'} alt="Foto de Perfil"
+                        <Avatar src={user.pathFoto ? user.pathFoto: 'https://placehold.co/600x400'} alt="Foto de Perfil"
                             sx={{ width: 150, height: 150 }}
                             variant="rounded"
                         />
 
                         <input type="file" ref={fileInputRef} />
-                        <Button onClick={handleFile} variant="contained" color="primary">Atualizar</Button>
+                        <Button sx={{padding:"10px"}} onClick={handleFile} variant="contained" disabled={pending} color="primary">{pending ? <CircularProgress color="success" /> : 'Atualizar'}</Button>
 
                     </Box>) :
                     (<>

@@ -94,7 +94,7 @@ function UserSingle() {
             <CssBaseline />
 
             <Stack spacing={3} direction="row" >
-                <Avatar src={pathFoto ?process.env.REACT_APP_API_URI + pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
+                <Avatar src={pathFoto ? pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
                     sx={{ width: 56, height: 56 }}
                     variant="rounded"
                 />

@@ -45,10 +45,6 @@ function Documents() {
       toast.error(message)
     }
 
-    if (documents && isSuccess) {
-      toast.success(message)
-    }
-
     dispatch(resetDocuments())
 
   }, [isError, isSuccess, message, documents, dispatch])

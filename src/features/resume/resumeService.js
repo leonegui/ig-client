@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URI + 'api/resume/'
+const API_URL = 'http://localhost:3001/api/resume/'
 
 // pegar currículo
 const getResume = async (resumaData) => {
