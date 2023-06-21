@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createResume, reset, updateResume } from '../../features/resume/resumeSlice'
 import { toast } from 'react-toastify'
-import { Button, Typography, TextareaAutosize, Box } from '@mui/material';
+import { Button, Typography, TextareaAutosize, Box, CircularProgress } from '@mui/material';
 
 function Resume() {
 
@@ -93,7 +93,11 @@ function Resume() {
 
       <TextareaAutosize minRows={4} onChange={onChange} name="body" id="body" defaultValue={body} />
 
-      {resume ? <Button variant="contained" onClick={handleUpdate}>Atualizar</Button> : <Button variant="contained" onClick={submitResume} >Criar</Button>}
+      {resume ? 
+        <Button sx={{padding:"10px"}} variant="contained" onClick={handleUpdate} disabled={isLoading} color="primary">{isLoading ? <CircularProgress color="success" /> : 'Atualizar'}</Button> 
+      
+      : <Button sx={{padding:"10px"}}  variant="contained" onClick={submitResume} disabled={isLoading} color="primary">{isLoading ? <CircularProgress color="success" /> : 'Criar'}</Button>}
+      
 
     </Box>
   )

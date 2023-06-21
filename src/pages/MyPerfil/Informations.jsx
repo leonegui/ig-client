@@ -48,7 +48,6 @@ function Informations() {
 
         dispatch(getDocuments(user.token))
         dispatch(getResume(user.token))
-        dispatch(reset())
 
         fileInputRef.current.value = null
 
@@ -125,27 +124,29 @@ function Informations() {
 
                 {user.pathFoto ?
                     (<Box sx={
-                        { display: 'flex', gap:'10px', flexDirection: 'column', justifyContent: 'center' }
+                        { display: 'flex', gap: '10px', flexDirection: 'column', justifyContent: 'center' }
                     }>
-                     
-                     <Avatar src={user.pathFoto ? user.pathFoto: 'https://placehold.co/600x400'} alt="Foto de Perfil"
+
+                        <Avatar src={user.pathFoto ? user.pathFoto : 'https://placehold.co/600x400'} alt="Foto de Perfil"
 
                             sx={{ width: 150, height: 150 }}
                             variant="rounded"
                         />
 
                         <input type="file" ref={fileInputRef} />
-                        <Button sx={{padding:"10px"}} onClick={handleFile} variant="contained" disabled={pending} color="primary">{pending ? <CircularProgress color="success" /> : 'Atualizar'}</Button>
+                        <Button sx={{ padding: "10px" }} onClick={handleFile} variant="contained" disabled={pending} color="primary">{pending ? <CircularProgress color="success" /> : 'Atualizar'}</Button>
 
                     </Box>) :
-                    (<>
+                    (<Box sx={{ display: 'flex', gap: '10px', flexDirection: 'column', justifyContent: 'center' }}>
+
                         <Typography variant="body1" color="text.primary">Adicione uma foto de perfil</Typography>
 
                         <input type="file" ref={fileInputRef} />
-                        <Button onClick={handleFile} variant="contained" color="primary">Atualizar</Button>
-                    </>)
-                }
+                        <Button sx={{ padding: "10px" }} onClick={handleFile} variant="contained" disabled={pending} color="primary">{pending ? <CircularProgress color="success" /> : 'Atualizar'}</Button>
 
+                    </Box>
+                    )
+                }
 
                 <Divider sx={{ margin: '20px 0' }} />
 
@@ -198,7 +199,7 @@ function Informations() {
                 <Documents />
 
             </Box>
-        </Container>
+        </Container >
 
     )
 }

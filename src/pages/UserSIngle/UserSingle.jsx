@@ -140,7 +140,7 @@ function UserSingle() {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        width: '50%',
+                        width: '100%',
                         border: '1px solid black',
                         borderRadius: '5px',
                         padding: '10px',
